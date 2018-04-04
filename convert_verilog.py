@@ -2,6 +2,12 @@ import os
 
 verilog_dir = '/Users/dillon/VerilogWorkspace/CGRAGenerator/hardware/generator_z/top/genesis_verif/'
 
+res = os.system('cd /Users/dillon/VerilogWorkspace/CGRAGenerator/verilator/generator_z_tb; ./run.csh')
+
+print 'Done generating design'
+
+# assert(res == 0)
+
 sv_files = """./global_controller_unq1.sv \\
 /Users/dillon/VerilogWorkspace/CGRAGenerator/hardware/generator_z/top/genesis_verif/test_cmpr.sv \\
 /Users/dillon/VerilogWorkspace/CGRAGenerator/hardware/generator_z/top/genesis_verif/test_debug_reg.sv \\
@@ -71,7 +77,7 @@ for file in files_to_proc:
     fstr = f.read();
     f.close()
     
-    new_fstr = remove_macro_def('xassert', fstr)
+    new_fstr = remove_macro_def('xassert(condition, message)', fstr)
 
     f = open(file_name, 'w')
     f.write(new_fstr)
