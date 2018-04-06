@@ -86,7 +86,7 @@ for file in files_to_proc:
     f.close()
 
 
-yosys_to_coreir_cmd_str = 'yosys -p "hierarchy; proc; memory -nomap; pmuxtree; {}to_coreir" -m to_coreir.so '.format(to_coreir_dir) + files_str
+yosys_to_coreir_cmd_str = 'yosys -p "hierarchy; proc; memory -nomap; pmuxtree; to_coreir" -m {}to_coreir.so '.format(to_coreir_dir) + files_str
 
 #verilog_dir + '*.sv ' + verilog_dir + '*.v'
 print 'Process command = '
