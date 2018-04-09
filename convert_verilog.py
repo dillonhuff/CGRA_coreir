@@ -50,6 +50,9 @@ v_files = """{0}cb_unq1.v \\
 
 files_str = sv_files + ' ' + v_files
 
+def remove_triple_equals(fstr):
+    return fstr.replace(" === ", " == ");
+
 def remove_macro_def(macro_name, fstr):
     lines = fstr.splitlines()
 
@@ -72,7 +75,7 @@ def remove_macro_def(macro_name, fstr):
     return final_str
 
 # Preprocess away xasserts from files
-files_to_proc = ['input_sr_unq1.v', 'output_sr_unq1.v', 'memory_core_unq1.v']
+files_to_proc = ['input_sr_unq1.v', 'output_sr_unq1.v', 'memory_core_unq1.v', 'test_debug_reg.sv']
 for file in files_to_proc:
     file_name = verilog_dir + file
     f = open(file_name, 'r')
@@ -80,6 +83,7 @@ for file in files_to_proc:
     f.close()
     
     new_fstr = remove_macro_def('xassert(condition, message)', fstr)
+    new_fstr = remove_triple_equals(new_fstr)
 
     f = open(file_name, 'w')
     f.write(new_fstr)
