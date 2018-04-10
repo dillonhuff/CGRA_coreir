@@ -25,7 +25,7 @@ v_files = """{0}cb_unq1.v \\
 {0}cb_unq3.v \\
 {0}fifo_control_unq1.v \\
 {0}global_signal_tile_unq1.v \\
-{0}input_sr_unq1.v \\
+input_sr_unq1.v \\
 {0}io16bit_unq1.v \\
 {0}io16bit_unq2.v \\
 {0}io16bit_unq3.v \\
@@ -38,7 +38,7 @@ v_files = """{0}cb_unq1.v \\
 {0}mem_unq1.v \\
 {0}memory_core_unq1.v \\
 {0}memory_tile_unq1.v \\
-{0}output_sr_unq1.v \\
+output_sr_unq1.v \\
 {0}pe_tile_new_unq1.v \\
 {0}sb_unq1.v \\
 {0}sb_unq2.v \\
