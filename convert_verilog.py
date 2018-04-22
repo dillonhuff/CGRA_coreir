@@ -11,6 +11,7 @@ print 'Done generating design'
 sv_files = """./global_controller_unq1.sv \\
 ./test_lut.sv \\
 {0}test_cmpr.sv \\
+{0}mdll_top.sv \\
 {0}test_debug_reg.sv \\
 {0}test_full_add.sv \\
 {0}test_mult_add.sv \\
