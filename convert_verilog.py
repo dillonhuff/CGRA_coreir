@@ -51,6 +51,20 @@ v_files = """{0}cb_unq1.v \\
 
 files_str = sv_files + ' ' + v_files
 
+memory_tile_files_str = """{0}input_sr_unq1.v \\
+{0}linebuffer_control_unq1.v \\
+{0}fifo_control_unq1.v \\
+{0}mem_unq1.v \\
+{0}memory_core_unq1.v \\
+{0}memory_tile_unq1.v \\
+{0}output_sr_unq1.v \\
+{0}pe_tile_new_unq1.sv \\
+{0}sb_unq1.v \\
+{0}sb_unq2.v \\
+{0}sb_unq3.v \\
+{0}sram_512w_16b.v \\""".format(verilog_dir)
+
+
 def remove_triple_equals(fstr):
     return fstr.replace(" === ", " == ");
 
@@ -90,6 +104,15 @@ for file in files_to_proc:
     f.write(new_fstr)
     f.close()
 
+
+print 'Creating memory tile'
+yosys_to_coreir_cmd_str = 'yosys -p "hierarchy; proc; memory -nomap; pmuxtree; to_coreir" -m {}to_coreir.so '.format(to_coreir_dir) + memory_tile_files_str
+
+os.system(yosys_to_coreir_cmd_str)
+
+print 'Created memory tile'
+
+assert(False)
 
 yosys_to_coreir_cmd_str = 'yosys -p "hierarchy; proc; memory -nomap; pmuxtree; to_coreir" -m {}to_coreir.so '.format(to_coreir_dir) + files_str
 
