@@ -1,17 +1,20 @@
 import os
 
-verilator_dir = '/Users/dillon/VerilogWorkspace/CGRAGenerator/verilator/generator_z_tb'
-verilog_dir = '/Users/dillon/VerilogWorkspace/CGRAGenerator/hardware/generator_z/top/genesis_verif/'
+#verilator_dir = '/Users/dillon/VerilogWorkspace/CGRAGenerator/verilator/generator_z_tb'
+#verilog_dir = '/Users/dillon/VerilogWorkspace/CGRAGenerator/hardware/generator_z/top/genesis_verif/'
+
+verilog_dir = '/Users/dillon/VerilogWorkspace/CGRA_verilog_mirror/'
+
 to_coreir_dir = '/Users/dillon/CppWorkspace/VerilogToCoreIR/'
 
-res = os.system('cd {}; ./run.csh'.format(verilator_dir))
+#res = os.system('cd {}; ./run.csh'.format(verilator_dir))
 
 print 'Done generating design'
 
 sv_files = """./global_controller_unq1.sv \\
 ./test_lut.sv \\
+mdll_top.sv \\
 {0}test_cmpr.sv \\
-{0}mdll_top.sv \\
 {0}test_debug_reg.sv \\
 {0}test_full_add.sv \\
 {0}test_mult_add.sv \\
