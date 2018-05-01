@@ -1,5 +1,7 @@
 import os
 
+from yosys_utils import remove_triple_equals, remove_macro_def
+
 #verilator_dir = '/Users/dillon/VerilogWorkspace/CGRAGenerator/verilator/generator_z_tb'
 #verilog_dir = '/Users/dillon/VerilogWorkspace/CGRAGenerator/hardware/generator_z/top/genesis_verif/'
 
@@ -63,31 +65,6 @@ memory_tile_files_str = """{0}input_sr_unq1.v \\
 {0}sb_unq2.v \\
 {0}sb_unq3.v \\
 {0}sram_512w_16b.v \\""".format(verilog_dir)
-
-
-def remove_triple_equals(fstr):
-    return fstr.replace(" === ", " == ");
-
-def remove_macro_def(macro_name, fstr):
-    lines = fstr.splitlines()
-
-    final_str = ''
-    macro_len = len(macro_name)
-    define_len = len('define')
-    for line in lines:
-        if len(line) >= (macro_len + define_len + 1) and line[0] == '`':
-            print 'Found macro def = ', line
-            base = 1 + define_len + 1
-            print line[base : base + macro_len]
-
-            if line[base : base + macro_len] == macro_name:
-                final_str += line[0 : base + macro_len]
-            else:
-                final_str += line + '\n'
-        else:
-            final_str += line + '\n'
-
-    return final_str
 
 # Preprocess away xasserts from files
 files_to_proc = ['input_sr_unq1.v', 'output_sr_unq1.v', 'memory_core_unq1.v', 'test_debug_reg.sv']
