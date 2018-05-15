@@ -15,7 +15,8 @@ module  test_lut  #(
   output logic [DataWidth-1:0] res
 );
 
-   assign res = 0;
+   assign res = 16'hffff;
+ //0;
    
 
 // genvar ggg;
